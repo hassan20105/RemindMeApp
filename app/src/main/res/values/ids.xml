@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="activity_history_tabLayout" type="id">tab</item>
+</resources>

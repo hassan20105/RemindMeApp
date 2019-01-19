@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical"
+    android:weightSum="6"
+    tools:context=".Activities.LoginActivity">
+
+
+        <Button
+            android:id="@+id/btn_notification_show"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/btn_design"
+            android:onClick="showNotificaiton"
+            android:text="Login"
+            android:textColor="@color/white" />
+
+
+
+</LinearLayout>

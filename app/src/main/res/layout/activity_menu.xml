@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical"
+    android:weightSum="4"
+    tools:context=".Activities.MenuActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imageView4"
+            android:layout_width="75dp"
+            android:layout_height="154dp"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:layout_margin="20dp"
+
+            android:layout_weight="1"
+            android:src="@drawable/hassans" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="20dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Username"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="24sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/location_menu_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="125dp"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:background="@color/Blue"
+            android:drawableTop="@drawable/location_img"
+            android:padding="20dp"
+            android:text="Location"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/history_menu_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="125dp"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:background="@color/colorAccent"
+            android:drawablePadding="0dp"
+            android:drawableTop="@drawable/history_img"
+            android:padding="20dp"
+            android:text="History"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/about_menu_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="125dp"
+            android:layout_gravity="left|center"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:background="@color/purple"
+            android:drawableTop="@drawable/abou_img"
+            android:padding="20dp"
+            android:text="About US"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/contact_menu_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="125dp"
+            android:layout_gravity="right|center"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:background="@color/colorPrimaryDark"
+            android:drawableTop="@drawable/help_img"
+            android:padding="20dp"
+            android:text="Contact"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/logout_menu_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="125dp"
+        android:layout_gravity="top|right|fill"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="80dp"
+        android:layout_weight="1"
+        android:background="@color/colorPrimary"
+        android:drawableLeft="@drawable/logout_img"
+        android:padding="15dp"
+        android:text="Logout"
+        android:textColor="@color/white"
+        android:textSize="24sp" />
+
+</LinearLayout>

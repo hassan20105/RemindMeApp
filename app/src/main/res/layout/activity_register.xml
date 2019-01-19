@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/brown"
+    android:orientation="vertical"
+    android:weightSum="6"
+    tools:context=".Activities.LoginActivity">
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:gravity="center"
+        >
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="250dp"
+            android:layout_height="210dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            app:srcCompat="@drawable/logo" />
+
+        <EditText
+            android:id="@+id/activity_register_emailET"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/edittext_layout"
+            android:ems="10"
+            android:hint=" Email"
+            android:inputType="textEmailAddress"
+            android:textColor="@android:color/background_dark"
+            android:textColorHint="@android:color/black" />
+
+        <EditText
+            android:id="@+id/activity_register_passwordET"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/edittext_layout"
+            android:ems="10"
+            android:hint=" Password"
+            android:inputType="textPassword"
+            android:textColor="@android:color/background_dark"
+            android:textColorHint="@android:color/black" />
+
+        <EditText
+            android:id="@+id/activity_register_confirmPasswordET"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/edittext_layout"
+            android:ems="10"
+            android:hint=" Confirm Password"
+            android:inputType="textPassword"
+            android:textColor="@android:color/background_dark"
+            android:textColorHint="@android:color/black" />
+
+        <EditText
+            android:id="@+id/activity_register_phoneET"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/edittext_layout"
+            android:ems="10"
+            android:hint=" Phone"
+            android:inputType="phone"
+            android:textColor="@android:color/background_dark"
+            android:textColorHint="@android:color/black" />
+
+
+        <Button
+            android:id="@+id/activity_register_registerBTN"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/btn_design"
+            android:text="Register"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+</ScrollView>
+</LinearLayout>
