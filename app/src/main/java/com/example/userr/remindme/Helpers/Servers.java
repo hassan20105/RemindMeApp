@@ -48,6 +48,36 @@ public class Servers {
     }
 
 
+    public static  void remove_Location_From_Server(String url , Map map , final Context context) {
+        RequestQueue mRequestQueue = Volley.newRequestQueue(context);
+        final Dialog loadingDialog = Dailogs.createLoadingBar(context);
+        loadingDialog.show();
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(map), new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    String dbStatus = (String) response.get("DBStatus");
+                    Toast.makeText(context, ""+dbStatus, Toast.LENGTH_SHORT).show();
+                    loadingDialog.dismiss();
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                loadingDialog.dismiss();
+            }
+        });
+        mRequestQueue.add(request);
+
+    }
+
+
+
 
 
 

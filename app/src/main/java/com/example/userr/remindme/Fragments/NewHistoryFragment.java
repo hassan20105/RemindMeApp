@@ -51,18 +51,16 @@ public class NewHistoryFragment extends Fragment{
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        // Bind your views.
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.rec);
-        // Create your layout manager.
+        mRecyclerView =  view.findViewById(R.id.rec);
         LinearLayoutManager layout = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(layout);
         requestQueue = Volley.newRequestQueue(getContext());
-        // Fetch your items.
-mLocationList = new ArrayList<>();
+          mLocationList = new ArrayList<>();
+          getLocations();
 
-        // Set your adapter
+    }
 
-
+    private void getLocations() {
         String url = "https://hassancs.000webhostapp.com/getlocation.php";
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
@@ -93,8 +91,6 @@ mLocationList = new ArrayList<>();
         });
         RequestQueue requestQueue = Volley.newRequestQueue(getContext());
         requestQueue.add(stringRequest);
-
-
     }
 
 

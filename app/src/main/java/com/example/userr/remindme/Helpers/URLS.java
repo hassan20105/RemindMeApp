@@ -6,5 +6,7 @@ public class URLS {
     public static final String LOGIN_URL = BASE_URL+"index2.php";
     public static final String REGISTER_URL= BASE_URL+"index.php";
     public static final String ADD_LOCATION_URL = BASE_URL+"addlocation.php";
+    public static final String GET_LOCATION_URL = BASE_URL+"getlocation.php";
+    public static final String REMOVE_LOCATION_URL = BASE_URL+"removeLocation.php";
 
 }
