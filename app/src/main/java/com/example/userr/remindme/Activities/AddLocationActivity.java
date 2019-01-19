@@ -13,7 +13,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
 
-import com.example.userr.remindme.Helpers.Servers;
+import com.example.userr.remindme.Helpers.LocationServers;
 import com.example.userr.remindme.Helpers.URLS;
 import com.example.userr.remindme.R;
 
@@ -115,7 +115,7 @@ public class AddLocationActivity extends AppCompatActivity implements View.OnCli
                 break;
             case R.id.activity_add_location_saveBTN:
             {
-                Servers.saveLocation_to_Server(URLS.ADD_LOCATION_URL,getMapData(),this);
+                LocationServers.saveLocation_to_Server(URLS.ADD_LOCATION_URL,getMapData(),this);
                 break;
             }
         }

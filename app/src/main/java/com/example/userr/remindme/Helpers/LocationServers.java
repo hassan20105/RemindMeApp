@@ -18,7 +18,7 @@ import org.json.JSONObject;
 
 import java.util.Map;
 
-public class Servers {
+public class LocationServers {
     public static  void saveLocation_to_Server(String url , Map map , final Context context) {
         RequestQueue mRequestQueue = Volley.newRequestQueue(context);
         final Dialog loadingDialog = Dailogs.createLoadingBar(context);
@@ -59,12 +59,9 @@ public class Servers {
                     String dbStatus = (String) response.get("DBStatus");
                     Toast.makeText(context, ""+dbStatus, Toast.LENGTH_SHORT).show();
                     loadingDialog.dismiss();
-
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
-
             }
         }, new Response.ErrorListener() {
             @Override

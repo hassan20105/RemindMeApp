@@ -54,13 +54,9 @@ public class LoginActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         emailEditText.setText(getIntent().getStringExtra("email"));
         login_passwordET.setText(getIntent().getStringExtra("pass"));
-
-
         initlize();
         setEvents();
-
         sharedPreferences = getSharedPreferences("userData", MODE_PRIVATE);
-
         if(sharedPreferences!=null&&!sharedPreferences.getString("email","").equals("")){
             email = sharedPreferences.getString("email","");
             password = sharedPreferences.getString("password","");
@@ -155,13 +151,9 @@ public class LoginActivity extends AppCompatActivity {
                         Toast.makeText(LoginActivity.this, "" + check, Toast.LENGTH_SHORT).show();
                         loadingDialog.dismiss();
                     }
-
-
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
-
             }
         }, new Response.ErrorListener() {
             @Override

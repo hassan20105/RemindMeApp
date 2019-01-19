@@ -15,12 +15,14 @@ public class HistoryActivity extends AppCompatActivity {
     @BindView(R.id.activity_history_tabLayout)
     TabLayout historyTablayout;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
         ButterKnife.bind(this);
         HistoryActivityViewPagerAdapter adapter = new HistoryActivityViewPagerAdapter(getSupportFragmentManager());
+
         historyViewPager.setAdapter(adapter);
         historyTablayout.setupWithViewPager(historyViewPager);
     }

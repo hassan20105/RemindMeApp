@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -36,6 +37,7 @@ import java.util.regex.Pattern;
 public class NewHistoryFragment extends Fragment{
 
     private RecyclerView mRecyclerView;
+    private SwipeRefreshLayout swiper;
     private HistoryAdapter adapter;
     private ArrayList<LocationResponse> mLocationList;
     private RequestQueue requestQueue;
@@ -52,6 +54,7 @@ public class NewHistoryFragment extends Fragment{
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mRecyclerView =  view.findViewById(R.id.rec);
+        swiper = view.findViewById(R.id.swiper);
         LinearLayoutManager layout = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(layout);
         requestQueue = Volley.newRequestQueue(getContext());
@@ -74,7 +77,7 @@ public class NewHistoryFragment extends Fragment{
                         String[] address = jsonObject.getString("address").split(Pattern.quote(","));
                         String time = jsonObject.getString("time");
                         mLocationList.add(new LocationResponse(date,address[0]+"\n"+address[1]+"\n"+address[2],time));
-                        adapter = new HistoryAdapter(getContext(), mLocationList);
+                        adapter = new HistoryAdapter(getContext(), mLocationList,swiper);
                         mRecyclerView.setAdapter(adapter);
 
                     }
