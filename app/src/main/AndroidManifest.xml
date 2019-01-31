@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.userr.remindme">
-
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -31,13 +30,12 @@
             android:name=".Activities.MapActivity"
             android:label="@string/title_activity_map" />
 
-        <service android:name=".services.FirstService" />
-
         <activity
             android:name=".Activities.MenuActivity"
             android:label="Profile"
             android:theme="@style/AppTheme" />
         <activity android:name=".Activities.HistoryActivity"></activity>
+        <service android:name=".services.AlarmService" android:enabled="true"></service>
     </application>
 
 </manifest>

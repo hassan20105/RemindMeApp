@@ -1,5 +1,8 @@
 package com.example.userr.remindme.Fragments;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -23,16 +26,22 @@ import com.android.volley.toolbox.Volley;
 import com.example.userr.remindme.Adapters.HistoryAdapter;
 import com.example.userr.remindme.Helpers.LocationResponse;
 import com.example.userr.remindme.R;
+import com.example.userr.remindme.models.LocationItem;
+import com.example.userr.remindme.services.AlarmService;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
+
+import static android.content.Context.ALARM_SERVICE;
 
 public class NewHistoryFragment extends Fragment{
 
@@ -68,18 +77,37 @@ public class NewHistoryFragment extends Fragment{
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+                ArrayList<LocationItem> locationItems = new Gson().fromJson(response,new TypeToken<ArrayList<LocationItem>>(){}.getType());
+                adapter = new HistoryAdapter(getContext(), locationItems,swiper);
+                mRecyclerView.setAdapter(adapter);
+
                 try {
+                    Intent intent = new Intent(getActivity(),AlarmService.class);
+                    AlarmManager alarmManager = (AlarmManager)getActivity(). getSystemService(ALARM_SERVICE);
                     JSONArray jsonArray = new JSONArray(response);
+                    Calendar calendar = Calendar.getInstance();
                     for(int i=0;i<=jsonArray.length();i++)
                     {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
-                        String date = jsonObject.getString("date");
-                        String[] address = jsonObject.getString("address").split(Pattern.quote(","));
                         String time = jsonObject.getString("time");
-                        mLocationList.add(new LocationResponse(date,address[0]+"\n"+address[1]+"\n"+address[2],time));
-                        adapter = new HistoryAdapter(getContext(), mLocationList,swiper);
-                        mRecyclerView.setAdapter(adapter);
-
+                        String date= jsonObject.getString("date");
+                        String address=jsonObject.getString("address");
+                        intent.putExtra("address",address);
+                        PendingIntent pendingIntent  = PendingIntent.getService(getActivity(),0,intent,0);
+                        String date_splitter[]= date.split("-");
+                        String[]time_split = time.split(Pattern.quote(":"));
+                      /* calendar.set(Calendar.YEAR, Integer.parseInt(date_splitter[0]));
+                        calendar.set(Calendar.MONTH, Integer.parseInt(date_splitter[1]));
+                        calendar.set(Calendar.DAY_OF_MONTH, Integer.parseInt(date_splitter[2]));*/
+                        calendar.set(Calendar.HOUR_OF_DAY, Integer.parseInt(time_split[0]));
+                        calendar.set(Calendar.MINUTE, Integer.parseInt(time_split[1]));
+                     /*  int year = Integer.parseInt(date_splitter[0]);
+                        int month = Integer.parseInt(date_splitter[1]);
+                        int day = Integer.parseInt(date_splitter[2]);
+                        int h = Integer.parseInt(time_split[0]);
+                        int m = Integer.parseInt(time_split[1]);
+                        calendar.set(year,month,day,h,m,0);*/
+                        alarmManager.set(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),pendingIntent);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();

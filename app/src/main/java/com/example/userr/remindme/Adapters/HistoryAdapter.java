@@ -22,6 +22,7 @@ import com.example.userr.remindme.Helpers.LocationResponse;
 import com.example.userr.remindme.Helpers.LocationServers;
 import com.example.userr.remindme.Helpers.URLS;
 import com.example.userr.remindme.R;
+import com.example.userr.remindme.models.LocationItem;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -34,9 +35,9 @@ import java.util.Random;
 public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryHolder>  {
     String id ="";
     private Context mContext;
-    private ArrayList<LocationResponse> mlocationItems;
+    private ArrayList<LocationItem> mlocationItems;
     private SwipeRefreshLayout swiper;
-    public HistoryAdapter(Context mContext, ArrayList<LocationResponse> mlocationItems, SwipeRefreshLayout swiper) {
+    public HistoryAdapter(Context mContext, ArrayList<LocationItem> mlocationItems, SwipeRefreshLayout swiper) {
         this.mContext = mContext;
         this.mlocationItems = mlocationItems;
         this.swiper = swiper;
@@ -50,7 +51,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryH
 
     @Override
     public void onBindViewHolder(@NonNull HistoryHolder historyHolder, final int position) {
-        final LocationResponse locationItems = mlocationItems.get(position);
+        final LocationItem locationItems = mlocationItems.get(position);
         historyHolder.dateTV.setText(locationItems.getDate());
         historyHolder.timeTV.setText(locationItems.getTime());
         historyHolder.addressTV.setText(locationItems.getAddress());
