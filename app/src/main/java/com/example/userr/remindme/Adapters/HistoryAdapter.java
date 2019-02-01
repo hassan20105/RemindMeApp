@@ -69,7 +69,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryH
                             map.put("id",id);
                             LocationServers.remove_Location_From_Server(URLS.REMOVE_LOCATION_URL,map,mContext);
                             mlocationItems.remove(position);
-
+                            notifyDataSetChanged();
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -89,7 +89,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryH
         swiper.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                refresh();
+               // refresh();
             }
         });
     }

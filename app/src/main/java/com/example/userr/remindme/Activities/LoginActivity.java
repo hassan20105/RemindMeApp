@@ -25,6 +25,7 @@ import com.example.userr.remindme.R;
 import com.example.userr.remindme.Helpers.URLS;
 import com.example.userr.remindme.Helpers.ValidationFields;
 
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -56,6 +57,9 @@ public class LoginActivity extends AppCompatActivity {
         login_passwordET.setText(getIntent().getStringExtra("pass"));
         initlize();
         setEvents();
+
+       // startService(new Intent(this, FirebaseService.class));
+
         sharedPreferences = getSharedPreferences("userData", MODE_PRIVATE);
         if(sharedPreferences!=null&&!sharedPreferences.getString("email","").equals("")){
             email = sharedPreferences.getString("email","");

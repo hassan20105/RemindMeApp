@@ -77,7 +77,7 @@ public class AddLocationActivity extends AppCompatActivity implements View.OnCli
         DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int y, int m, int d) {
-                int month = datePicker.getMonth()+1;
+                int month = datePicker.getMonth();
                 dateET.setText(y+"-"+month+"-"+d);
 
             }

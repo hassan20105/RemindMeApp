@@ -6,6 +6,7 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
+import android.util.Log;
 import android.widget.Toast;
 import com.example.userr.remindme.Activities.MapActivity;
 import com.example.userr.remindme.R;
@@ -13,7 +14,8 @@ import com.example.userr.remindme.R;
 public class AlarmService extends Service {
     @Override
     public void onCreate() {
-        Toast.makeText(this, "create", Toast.LENGTH_SHORT).show();
+       // Toast.makeText(this, "create", Toast.LENGTH_SHORT).show();
+        Log.e("tag","test");
 
     }
     @Override
@@ -27,7 +29,8 @@ public class AlarmService extends Service {
         PendingIntent contentIntent = PendingIntent.getActivity(getApplicationContext(), 0, notificationIntent, 0);
           NotificationManager notificationManager =
                 (NotificationManager) getSystemService(Service.NOTIFICATION_SERVICE);
-        Notification notification = new NotificationCompat.Builder(getBaseContext(),"notification_id")
+        Notification notification =
+                new NotificationCompat.Builder(getBaseContext(),"notification_id")
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setContentTitle("Reminder Of Today")
                 .setContentText(intent.getStringExtra("address"))

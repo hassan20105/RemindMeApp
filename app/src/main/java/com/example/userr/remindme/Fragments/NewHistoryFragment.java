@@ -35,6 +35,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -43,32 +44,35 @@ import java.util.regex.Pattern;
 
 import static android.content.Context.ALARM_SERVICE;
 
-public class NewHistoryFragment extends Fragment{
+public class NewHistoryFragment extends Fragment {
 
     private RecyclerView mRecyclerView;
     private SwipeRefreshLayout swiper;
     private HistoryAdapter adapter;
     private ArrayList<LocationResponse> mLocationList;
     private RequestQueue requestQueue;
-    public static NewHistoryFragment newInstance(){return new NewHistoryFragment(); }
+
+    public static NewHistoryFragment newInstance() {
+        return new NewHistoryFragment();
+    }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_new_history,container,false);
+        View root = inflater.inflate(R.layout.fragment_new_history, container, false);
         return root;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mRecyclerView =  view.findViewById(R.id.rec);
+        mRecyclerView = view.findViewById(R.id.rec);
         swiper = view.findViewById(R.id.swiper);
         LinearLayoutManager layout = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(layout);
         requestQueue = Volley.newRequestQueue(getContext());
-          mLocationList = new ArrayList<>();
-          getLocations();
+        mLocationList = new ArrayList<>();
+        getLocations();
 
     }
 
@@ -77,37 +81,43 @@ public class NewHistoryFragment extends Fragment{
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                ArrayList<LocationItem> locationItems = new Gson().fromJson(response,new TypeToken<ArrayList<LocationItem>>(){}.getType());
-                adapter = new HistoryAdapter(getContext(), locationItems,swiper);
+                ArrayList<LocationItem> locationItems = new Gson().fromJson(response, new TypeToken<ArrayList<LocationItem>>() {
+                }.getType());
+                adapter = new HistoryAdapter(getContext(), locationItems, swiper);
                 mRecyclerView.setAdapter(adapter);
 
                 try {
-                    Intent intent = new Intent(getActivity(),AlarmService.class);
-                    AlarmManager alarmManager = (AlarmManager)getActivity(). getSystemService(ALARM_SERVICE);
+                    Intent intent = new Intent(getActivity(), AlarmService.class);
+                    AlarmManager alarmManager = (AlarmManager) getActivity().getSystemService(ALARM_SERVICE);
                     JSONArray jsonArray = new JSONArray(response);
                     Calendar calendar = Calendar.getInstance();
-                    for(int i=0;i<=jsonArray.length();i++)
-                    {
+                    for (int i = 0; i <= jsonArray.length(); i++) {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
                         String time = jsonObject.getString("time");
-                        String date= jsonObject.getString("date");
-                        String address=jsonObject.getString("address");
-                        intent.putExtra("address",address);
-                        PendingIntent pendingIntent  = PendingIntent.getService(getActivity(),0,intent,0);
-                        String date_splitter[]= date.split("-");
-                        String[]time_split = time.split(Pattern.quote(":"));
+                        String date = jsonObject.getString("date");
+                        String address = jsonObject.getString("address");
+                        intent.putExtra("address", address);
+                        PendingIntent pendingIntent = PendingIntent.getService(getActivity(), 0, intent, 0);
+                        String date_splitter[] = date.split("-");
+                        String[] time_split = time.split(Pattern.quote(":"));
                       /* calendar.set(Calendar.YEAR, Integer.parseInt(date_splitter[0]));
                         calendar.set(Calendar.MONTH, Integer.parseInt(date_splitter[1]));
-                        calendar.set(Calendar.DAY_OF_MONTH, Integer.parseInt(date_splitter[2]));*/
+                        calendar.set(Calendar.DAY_OF_MONTH, Integer.parseInt(date_splitter[2]));
                         calendar.set(Calendar.HOUR_OF_DAY, Integer.parseInt(time_split[0]));
                         calendar.set(Calendar.MINUTE, Integer.parseInt(time_split[1]));
-                     /*  int year = Integer.parseInt(date_splitter[0]);
+                        */
+                        int year = Integer.parseInt(date_splitter[0]);
                         int month = Integer.parseInt(date_splitter[1]);
                         int day = Integer.parseInt(date_splitter[2]);
                         int h = Integer.parseInt(time_split[0]);
                         int m = Integer.parseInt(time_split[1]);
-                        calendar.set(year,month,day,h,m,0);*/
-                        alarmManager.set(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),pendingIntent);
+                        calendar.set(year, month, day, h, m, 0);
+
+                        SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd,hh:mm");
+                        String formatted = format1.format(calendar.getTime());
+                        Log.e("Time",formatted);
+
+                        alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
